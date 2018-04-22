@@ -15,7 +15,10 @@ asc[' '] = 32
 #if one digit, digit has to include a 0
 puts 'type the hex number'
 input = gets.chomp.upcase
+#Get rid of empty spaces if any
+input.gsub!(/\s+/, '')
 # Separate input into pairs and build an array
+
 arr = input.chars.each_slice(2).map(&:join)
 
 # ----  Method to calculate the decimal value for first digit
