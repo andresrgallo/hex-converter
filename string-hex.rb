@@ -10,7 +10,7 @@ end
 asc = asc_a.merge(asc_b)
 # Add space to asc hash
 asc[' '] = 32
-
+p asc
 # ----- get input from user ------
 #if one digit, digit has to include a 0
 puts 'type the the characters you want to show as hexadecimals digits'
@@ -20,32 +20,36 @@ input = gets.chomp
 arr = input.split('')
 
 # Method to convert string input to hex pairs
-def string_hex (x, y, z)
+def string_hex (arr, asc, hex)
     # Array to store value for the result of the div of ascii value by 16 + the residue
     f = []
     s = []
     res = []
-    for i in 0..y.length-1
-        y.each  do |k,v|
-            if k == x[i]
-                a = v/16
-                f.append(a)
-                b = v  - a * 16
-                if b < 9
-                f.append(b)
+    for i in 0..arr.length-1
+        asc.each  do |k,v|
+            if k == arr[i]
+                if v < 16
+                    f.append(0)
+                    f.append(v)
                 else
-                    z.each do |k,v|
-                        if v == b
-                            b = k
-                            f.append(b)
+                    a = v/16
+                    f.append(a)
+                    b = v  - a * 16
+                    if b < 9
+                    f.append(b)
+                    else
+                        hex.each do |k,v|
+                            if v == b
+                                b = k
+                                f.append(b)
+                            end
                         end
                     end
                 end
             end
         end
     end
+    p f
     return f
 end
-
-# Print solution
-p "The hex pairs for the string '#{input}' are #{string_hex(arr, asc, hex).join().chars.each_slice(2).map(&:join).join(', ')}"
+p "The hex pairs for the string #{input} are #{string_hex(arr, asc, hex).join().chars.each_slice(2).map(&:join).join(', ')}"
