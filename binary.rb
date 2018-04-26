@@ -23,19 +23,19 @@ arr = input.chars.each_slice(2).map(&:join)
 
 # ----  Method to calculate the decimal value for first digit
 #  and store it in hash h with the key as the input -------
-def hex_conv(hex, arr)
+def hex_conv(x, y)
     h = {}
     # Calculate the decimal value for the second digit and store it
     # in array v
     v = []
-    for i in 0..((arr.length)-1)
-        if arr[i] == "20"
+    for i in 0..((y.length)-1)
+        if y[i] == "20"
             h[i] = 32
             v.append(0)
         else
-            arr[i][0].to_i > 0 ? h[i] = arr[i][0].to_i * 16 : h[i] = 0
+            y[i][0].to_i > 0 ? h[i] = y[i][0].to_i * 16 : h[i] = 0
             # Check if 2 digit is an integer or a letter
-            val = arr[i][1].to_i > 0 ? arr[i][1].to_i : consont(hex,arr[i])
+            val = y[i][1].to_i > 0 ? y[i][1].to_i : consont(x,y[i])
             v.append(val)
         end
     end
@@ -48,9 +48,9 @@ def hex_conv(hex, arr)
 end
 
 # ------ Method to get the value of the constant of a hex pair -----
-def consont(hex, arr)
-    hex.each  do |k,v|
-        if k == arr[1]
+def consont(x, y)
+    x.each  do |k,v|
+        if k == y[1]
         val = v
         return val
        end
@@ -59,10 +59,10 @@ end
 n = hex_conv(hex, arr)
 
 # ---- Method to convert the hexadecimal values into ASCII -----
-def code(asc,n)
+def code(x,y)
     res = []
-    n.each do |a|
-        asc.each do |k,v|
+    y.each do |a|
+        x.each do |k,v|
             if a == v
                 res << k
             end
@@ -73,4 +73,4 @@ def code(asc,n)
 end
 
 # ----- The result as a string ------
-p code(asc,n)
+p "the string convertion from the hex code '#{input}' is '#{code(asc,n)}'"
