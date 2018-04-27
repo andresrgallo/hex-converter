@@ -35,7 +35,7 @@ def string_hex (arr, asc, hex)
                     a = v/16
                     f.append(a)
                     b = v  - a * 16
-                    if b < 9
+                    if b <= 9
                     f.append(b)
                     else
                         hex.each do |k,v|
