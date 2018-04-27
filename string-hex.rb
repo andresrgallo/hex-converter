@@ -26,6 +26,9 @@ def string_hex (arr, asc, hex)
     s = []
     res = []
     for i in 0..arr.length-1
+        if arr[i] == " "
+            f.append(20)
+        else
         asc.each  do |k,v|
             if k == arr[i]
                 if v < 16
@@ -47,6 +50,7 @@ def string_hex (arr, asc, hex)
                     end
                 end
             end
+        end
         end
     end
     p f
